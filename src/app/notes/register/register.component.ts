@@ -11,8 +11,8 @@ export class RegisterComponent implements OnInit {
   constructor(private log: LoggerService) { }
 
   ngOnInit() {
-    this.log.invokeConsoleMethod('warn', 'no ha hecho nada más en este componente');
-    this.log.warn('no ha hecho nada más en este componente');
+    this.log.invokeConsoleMethod('warn', 'De esta forma el log sale como si lo invocara el servicio');
+    this.log.warn('De esta forma el log se mostrará con la invocación correcta desde este componente');
   }
 
 }

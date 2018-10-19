@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { CommentComponent } from './comment/comment.component';
-import { NotesRoutingModule } from './notes-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    NotesRoutingModule
+    CommonModule
   ],
   exports: [RegisterComponent, SearchComponent, CommentComponent],
   declarations: [RegisterComponent, SearchComponent, CommentComponent]
