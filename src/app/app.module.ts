@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,6 +15,7 @@ import { NotesModule } from './notes/notes.module';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     NotesModule
   ],
   providers: [{ provide: LoggerService, useClass: ConsoleLoggerService }],

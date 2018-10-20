@@ -1,0 +1,6 @@
+.active {
+    pointer-events: none;
+    cursor: default;
+    color: #1cb836;
+    text-decoration: none;
+}
