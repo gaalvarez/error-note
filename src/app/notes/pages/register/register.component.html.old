@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Registrar usuario</h1>
+  <form #registerForm="ngForm">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel">
+      <div *ngIf="name.errors?.required" class="alert alert-danger">
+        Valor requerido
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastname">Apellido</label>
+      <input type="text" class="form-control" id="lastname" required [(ngModel)]="user.lastname" name="lastname"
+        #lastname="ngModel">
+      <div *ngIf="lastname.errors?.required" class="alert alert-danger">
+        Valor requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Nombre de usuario</label>
+      <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" minlength="6"
+        #username="ngModel">
+      <div *ngIf="username.errors?.minlength" class="alert alert-danger">
+        Longitud debe ser mayor a 6
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email" #email="ngModel"
+        email>
+      <div *ngIf="email.errors?.required" class="alert alert-danger">
+        Valor requerido
+      </div>
+      <div *ngIf="email.errors?.email" class="alert alert-danger">
+        Debe ingresar un formato de email correcto
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="birthdate">Fecha de nacimiento</label>
+      <input type="date" class="form-control" id="birthdate" [(ngModel)]="user.birthdate" name="birthdate">
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Género</label>
+      <select class="form-control" id="gender" [(ngModel)]="user.gender" name="gender">
+        <option *ngFor="let gen of genders" [value]="gen">{{gen}}</option>
+      </select>
+    </div>
+
+    <button [disabled]="!registerForm.form.valid" type="submit" class="btn btn-success">Aceptar</button>
+
+  </form>
+</div>
