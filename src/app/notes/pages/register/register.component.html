@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>Registrar usuario</h1>
+  <form #registerForm="ngForm">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" #name="ngModel" name="name">
+      <div *ngIf="name.errors?.required" class="alert alert-danger">
+        Valor requerido
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastname">Apellido</label>
+      <input type="text" class="form-control" id="lastname" [(ngModel)]="user.lastname" name="lastname">
+    </div>
+
+    <div class="form-group">
+      <label for="username">Nombre de usuario</label>
+      <input type="text" class="form-control" id="username" required [(ngModel)]="user.username" #username="ngModel" name="username">
+      <div *ngIf="username.errors?.required" class="alert alert-danger">
+        Valor requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" #email="ngModel"  name="email">
+      <div *ngIf="email.errors?.required" class="alert alert-danger">
+        Valor requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="birthdate">Fecha de nacimiento</label>
+      <input type="date" class="form-control" id="birthdate" [(ngModel)]="user.birthdate" name="birthdate">
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Género</label>
+      <select class="form-control" id="gender" required [(ngModel)]="user.gender" name="gender">
+        <option *ngFor="let gen of genders" [value]="gen">{{gen}}</option>
+      </select>
+    </div>
+
+    <button [disabled]="!registerForm.form.valid" type="submit" class="btn btn-success">Aceptar</button>
+
+  </form>
+</div>

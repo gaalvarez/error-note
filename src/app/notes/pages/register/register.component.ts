@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggerService } from 'src/app/core/logger/logger.service';
+import { UserRegister } from '../../shared/user-register';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +8,16 @@ import { LoggerService } from 'src/app/core/logger/logger.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  genders = ['Femenino', 'Masculino', 'Otro'];
+  user: UserRegister = {
+    name: '',
+    lastname: '',
+    username: '',
+    email: '',
+    gender: 'Masculino',
+    birthdate: new Date(),
+  };
 
   constructor(private log: LoggerService) { }
 
