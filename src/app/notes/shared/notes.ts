@@ -3,4 +3,3 @@ export interface Note {
     language: string;
     type: string;
  }
- 

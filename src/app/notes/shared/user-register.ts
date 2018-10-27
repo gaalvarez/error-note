@@ -6,4 +6,3 @@ export interface UserRegister {
     birthdate: Date;
     gender: string;
  }
- 
