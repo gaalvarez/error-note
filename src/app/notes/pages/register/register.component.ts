@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoggerService } from 'src/app/core/logger/logger.service';
 import { UserRegister } from '../../shared/user-register';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UserRegisterService } from '../../shared/user-register.service';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +32,11 @@ export class RegisterComponent implements OnInit {
     gender: this.genders[1],
     birthdate: new Date(),
   };
-  constructor(private fb: FormBuilder, private log: LoggerService) { }
+  constructor(
+    private fb: FormBuilder,
+    private log: LoggerService,
+    private ur: UserRegisterService
+  ) { }
 
   ngOnInit() {
   }
@@ -50,6 +55,14 @@ export class RegisterComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  onAccept() {
+    this.log.info('a registrar en backend:' + JSON.stringify(this.registerForm.value as UserRegister));
+    this.ur
+      .registerUser(this.registerForm.value as UserRegister)
+      .subscribe();
+    this.log.info('usuario registrado');
   }
 
 }
