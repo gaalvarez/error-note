@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Note } from '../../shared/notes';
 import { Router } from '@angular/router';
 
+
+
+
 export const NOTES: Note[] = [
   { title: '',
   language: '',
