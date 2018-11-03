@@ -5,4 +5,5 @@ export interface UserRegister {
     email: string;
     birthdate: Date;
     gender: string;
- }
+}
+
