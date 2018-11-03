@@ -4,6 +4,8 @@ import { UserRegister } from '../../shared/user-register';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserRegisterService } from '../../shared/user-register.service';
 import { UniqueUserValidatorService } from '../../shared/unique-user-validator.service';
+import { NotificationsService } from 'angular2-notifications';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -41,7 +43,9 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private log: LoggerService,
     private ur: UserRegisterService,
-    private uniqueValidator: UniqueUserValidatorService
+    private uniqueValidator: UniqueUserValidatorService,
+    private notify: NotificationsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -67,7 +71,15 @@ export class RegisterComponent implements OnInit {
     this.log.info('a registrar en backend:' + JSON.stringify(this.registerForm.value as UserRegister));
     this.ur
       .registerUser(this.registerForm.value as UserRegister)
-      .subscribe();
+      .subscribe(
+        data => {
+          this.notify.success('Correcto', 'registro exitoso');
+          this.router.navigate(['/notes/search']);
+        },
+        error => {
+          this.notify.error('Error', 'registro exitoso');
+        }
+      );
   }
 
 }

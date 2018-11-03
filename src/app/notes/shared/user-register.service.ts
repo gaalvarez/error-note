@@ -24,10 +24,7 @@ export class UserRegisterService {
       })
     };
     return this.httpClient
-      .post(`${environment.backend_url}/users`, user, httpOptions)
-      .pipe(
-        catchError(this.handleError('registerUser', user))
-      );
+      .post(`${environment.backend_url}/users`, user, httpOptions);
   }
 
   isUsernameUsed(username: String) {

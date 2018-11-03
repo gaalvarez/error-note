@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
+import { NotificationsService } from 'angular2-notifications';
 
 /** Type of the handleError function returned by HttpErrorHandler.createHandleError */
 export type HandleError =
@@ -13,7 +14,7 @@ export type HandleError =
   providedIn: 'root'
 })
 export class HttpErrorHandler {
-  constructor(private log: LoggerService) { }
+  constructor(private log: LoggerService, private notify: NotificationsService) { }
 
   /** Create curried handleError function that already knows the service name */
   createHandleError = (serviceName = '') => <T>
@@ -41,7 +42,7 @@ export class HttpErrorHandler {
         }
       } // TODO: better job of transforming error for user consumption
       this.log.error(`${serviceName}: ${operation} failed: ${message}`);
-      
+      this.notify.error('Error', `Ha ocurrido un error en el servicio ${serviceName} contacte al administrador`);
       // Let the app keep running by returning a safe result.
       return of(result);
     };
