@@ -1,3 +1,4 @@
+import { UniqueUserValidatorService } from './shared/unique-user-validator.service';
 import { UserRegisterService } from './shared/user-register.service';
 import { NotesRoutingModule } from './notes-routing.module';
 import { NgModule } from '@angular/core';
@@ -34,6 +35,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   declarations: [RegisterComponent, SearchComponent, CommentComponent],
-  providers: [UserRegisterService]
+  providers: [UserRegisterService, UniqueUserValidatorService]
 })
 export class NotesModule { }

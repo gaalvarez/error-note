@@ -3,6 +3,7 @@ import { LoggerService } from 'src/app/core/logger/logger.service';
 import { UserRegister } from '../../shared/user-register';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserRegisterService } from '../../shared/user-register.service';
+import { UniqueUserValidatorService } from '../../shared/unique-user-validator.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm = this.fb.group({
     name: ['', Validators.required],
     lastname: [''],
-    username: ['', Validators.required],
+    username: ['', Validators.required, this.uniqueValidator.validate.bind(this.uniqueValidator)],
     email: [
       '',
       [Validators.required, Validators.email]
@@ -22,7 +23,11 @@ export class RegisterComponent implements OnInit {
     birthdate: [''],
     gender: ['']
   });
-  errors = { required: 'el valor es requerido', email: 'Formato de email inválido' };
+  errors = {
+    required: 'el valor es requerido',
+    email: 'Formato de email inválido',
+    nounique: 'Nombre de usuario ya registrado'
+  };
   genders = ['Femenino', 'Masculino', 'Otro'];
   user: UserRegister = {
     name: '',
@@ -35,7 +40,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private log: LoggerService,
-    private ur: UserRegisterService
+    private ur: UserRegisterService,
+    private uniqueValidator: UniqueUserValidatorService
   ) { }
 
   ngOnInit() {
@@ -62,7 +68,6 @@ export class RegisterComponent implements OnInit {
     this.ur
       .registerUser(this.registerForm.value as UserRegister)
       .subscribe();
-    this.log.info('usuario registrado');
   }
 
 }
