@@ -1,5 +1,9 @@
 export interface Note {
-    description: string;
+    title: string;
     language: string;
-    type: string;
+    tags: string[];
+    description: string;
+    file: File;
+    solution: string;
+    links: string[];
  }

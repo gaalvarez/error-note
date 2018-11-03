@@ -18,6 +18,7 @@ import {
   MatButtonModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { NoteRegisterComponent } from './pages/note-register/note-register.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     HttpClientModule
   ],
-  declarations: [RegisterComponent, SearchComponent, CommentComponent],
+  declarations: [RegisterComponent, SearchComponent, CommentComponent, NoteRegisterComponent],
   providers: [UserRegisterService, UniqueUserValidatorService]
 })
 export class NotesModule { }

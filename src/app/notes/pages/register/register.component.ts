@@ -4,7 +4,7 @@ import { UniqueUserValidatorService } from './../../shared/unique-user-validator
 import { Component, OnInit } from '@angular/core';
 import { LoggerService } from 'src/app/core/logger/logger.service';
 import { UserRegister } from '../../shared/user-register';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserRegisterService } from '../../shared/user-register.service';
 
 @Component({
@@ -17,11 +17,12 @@ export class RegisterComponent implements OnInit {
   registerForm = this.fb.group({
     name: ['', Validators.required],
     lastname: [''],
-    username: ['', Validators.required, this.uniqueValidator.validate.bind(this.uniqueValidator)],
+    username: new FormControl('',
+      { validators: Validators.required, asyncValidators: [this.uniqueValidator.validate.bind(this.uniqueValidator)], updateOn: 'blur' }),
     email: ['', [Validators.required, Validators.email]],
     birthdate: [''],
     gender: ['']
-  });
+  }, { updateOn: 'blur' });
   genders = ['Femenino', 'Masculino', 'Otro'];
   user: UserRegister = {
     name: '',
@@ -76,7 +77,7 @@ export class RegisterComponent implements OnInit {
           this.notify.success('Correcto', 'registro exitoso');
           this.router.navigate(['/notes/search']);
         },
-        err => {}
+        err => { }
       );
     this.log.info('usuario registrado');
   }
