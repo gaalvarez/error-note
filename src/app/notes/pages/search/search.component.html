@@ -1,7 +1,7 @@
 <h2>resultado</h2>
 <ul class="notes">
-  <li *ngFor="let note of notes" >
-    <span class="note">{{note.description}}</span> {{note.language}} {{note.type}}
-    <button (click)="onSelect(note)">Comentar</button>
-  </li>
+ <li *ngFor="let note of notes" >
+   <span class="note">{{note.description}}</span> {{note.language}} {{note.type}}
+   <button (click)="onSelect(note)">Comentar</button>
+ </li>
 </ul>

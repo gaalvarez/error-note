@@ -7,28 +7,28 @@
           <input matInput placeholder="Nombre" formControlName="name">
           <mat-error *ngIf="hasError('name')">{{messageError('name')}}</mat-error>
         </mat-form-field>
-
+ 
         <mat-form-field>
           <input matInput placeholder="Apellido" formControlName="lastname">
           <mat-error *ngIf="hasError('lastname')">{{messageError('lastname')}}</mat-error>
         </mat-form-field>
-
+ 
         <mat-form-field>
           <input matInput placeholder="Nombre de usuario" formControlName="username">
           <mat-error *ngIf="hasError('username')">{{messageError('username')}}</mat-error>
         </mat-form-field>
-
+ 
         <mat-form-field>
           <input type="email" matInput placeholder="Correo electrónico" formControlName="email">
           <mat-error *ngIf="hasError('email')">{{messageError('email')}}</mat-error>
         </mat-form-field>
-
+ 
         <mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" formControlName="birthdate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-
+ 
         <mat-form-field>
           <mat-select placeholder="Genero" formControlName="gender">
             <mat-option *ngFor="let gen of genders" [value]="gen">{{gen}}</mat-option>
@@ -40,6 +40,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button [disabled]="!registerForm.valid" type="submit" mat-raised-button color="primary" (click)="onAccept()">Aceptar</button>
+    <button [disabled]="!registerForm.valid" (click)="onAction()" type="submit" mat-raised-button color="primary" >Aceptar</button>
   </mat-card-actions>
-</mat-card>
+ </mat-card>
+ 

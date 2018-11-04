@@ -5,7 +5,6 @@ const routes: Routes = [
   { path: 'notes', loadChildren: './notes/notes.module#NotesModule' }
  ];
 
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)

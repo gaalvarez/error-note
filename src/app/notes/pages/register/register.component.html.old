@@ -1,56 +1,49 @@
 <div class="container">
   <h1>Registrar usuario</h1>
-  <form #registerForm="ngForm">
+  <form [formGroup]="registerForm">
     <div class="form-group">
       <label for="name">Nombre</label>
-      <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel">
-      <div *ngIf="name.errors?.required" class="alert alert-danger">
-        Valor requerido
+      <input type="text" class="form-control" id="name" name="name" formControlName="name">
+      <div *ngIf="hasError('name')" class="alert alert-danger">
+        {{messageError('name')}}
       </div>
     </div>
     <div class="form-group">
       <label for="lastname">Apellido</label>
-      <input type="text" class="form-control" id="lastname" required [(ngModel)]="user.lastname" name="lastname"
-        #lastname="ngModel">
-      <div *ngIf="lastname.errors?.required" class="alert alert-danger">
-        Valor requerido
-      </div>
+      <input type="text" class="form-control" id="lastname" name="lastname" formControlName="lastname">
     </div>
 
     <div class="form-group">
       <label for="username">Nombre de usuario</label>
-      <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" minlength="6"
-        #username="ngModel">
-      <div *ngIf="username.errors?.minlength" class="alert alert-danger">
-        Longitud debe ser mayor a 6
+      <input type="text" class="form-control" id="username" name="username" formControlName="username">
+      <div *ngIf="hasError('username')" class="alert alert-danger">
+        {{messageError('username')}}
       </div>
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email" #email="ngModel"
-        email>
-      <div *ngIf="email.errors?.required" class="alert alert-danger">
-        Valor requerido
-      </div>
-      <div *ngIf="email.errors?.email" class="alert alert-danger">
-        Debe ingresar un formato de email correcto
+      <input type="email" class="form-control" id="email" name="email" formControlName="email">
+      <div *ngIf="hasError('email')" class="alert alert-danger">
+        {{messageError('email')}}
       </div>
     </div>
 
     <div class="form-group">
       <label for="birthdate">Fecha de nacimiento</label>
-      <input type="date" class="form-control" id="birthdate" [(ngModel)]="user.birthdate" name="birthdate">
+      <input type="date" class="form-control" id="birthdate" name="birthdate" formControlName="birthdate">
     </div>
 
     <div class="form-group">
       <label for="gender">Género</label>
-      <select class="form-control" id="gender" [(ngModel)]="user.gender" name="gender">
+      <select class="form-control" id="gender" name="gender" formControlName="gender">
         <option *ngFor="let gen of genders" [value]="gen">{{gen}}</option>
       </select>
     </div>
-
-    <button [disabled]="!registerForm.form.valid" type="submit" class="btn btn-success">Aceptar</button>
-
-  </form>
+    <p>
+      Valores del formulario: {{registerForm.value | json}}
+    </p>
+    <p>Estado del formulario: {{registerForm.status}}</p>
+    <button type="submit" [disabled]="!registerForm.valid" class="btn btn-success">Aceptar</button>
+  </form> 
 </div>

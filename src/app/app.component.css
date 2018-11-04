@@ -1,6 +1,7 @@
+/*esta clase inactiva un link y lo pone de color verde*/
 .active {
     pointer-events: none;
     cursor: default;
     color: #1cb836;
     text-decoration: none;
-}
+ }

@@ -1,18 +1,16 @@
+import { HttpErrorHandler } from './../../core/http-error-handler.service';
+import { environment } from './../../../environments/environment';
 import { UserRegister } from './user-register';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { catchError, map } from 'rxjs/operators';
-import { HttpErrorHandler, HandleError } from 'src/app/core/http-error-handler.service';
-import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HandleError } from '../../core/http-error-handler.service';
 
 @Injectable()
 export class UserRegisterService {
 
   private handleError: HandleError;
-
-  constructor(
-    private httpClient: HttpClient,
+  constructor(private httpClient: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('UserRegisterService');
   }
@@ -28,11 +26,6 @@ export class UserRegisterService {
   }
 
   isUsernameUsed(username: String) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
     return this.httpClient
       .get(`${environment.backend_url}/users/validate/${username}`)
       .pipe(
