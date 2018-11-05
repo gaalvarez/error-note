@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+
+@import './app-theme';
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+
+// Background palette for light themes.
+$mat-light-theme-background: (
+  status-bar: map_get($mat-grey, 300),
+  app-bar:    map_get($mat-grey, 100),
+  background: map_get($mat-grey, 300),
+  hover:      rgba(black, 0.04), // TODO(kara): check style with Material Design UX
+  card:       white,
+  dialog:     white,
+  disabled-button: rgba(black, 0.12),
+  raised-button: white,
+  focused-button: $dark-focused,
+  selected-button: map_get($mat-grey, 300),
+  selected-disabled-button: map_get($mat-grey, 400),
+  disabled-button-toggle: map_get($mat-grey, 200),
+  unselected-chip: map_get($mat-grey, 300),
+  disabled-list-option: map_get($mat-grey, 200),
+);
+
+
+$enote-app-primary: mat-palette($mat-indigo, 800);
+$enote-app-accent:  mat-palette($mat-cyan, 400);
+$enote-app-warn:    mat-palette($mat-deep-orange);
+$enote-app-background: mat-palette($mat-gray);
+// Create the theme object (a Sass map containing all of the palettes).
+$enote-app-theme: mat-light-theme($enote-app-primary, $enote-app-accent, $enote-app-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($enote-app-theme);
+@include enote-app-theme($enote-app-theme);
