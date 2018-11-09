@@ -33,7 +33,10 @@ registerLocaleData(localeEs, 'es-Co', localeEsExtra);
     MatListModule,
     SimpleNotificationsModule.forRoot()
   ],
-  providers: [{ provide: LoggerService, useClass: ConsoleLoggerService }, { provide: LOCALE_ID, useValue: 'en' }],
+  providers: [
+    { provide: LoggerService, useClass: ConsoleLoggerService },
+    { provide: LOCALE_ID, useValue: 'en' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
