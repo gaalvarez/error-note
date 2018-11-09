@@ -1,6 +1,6 @@
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoggerService } from './core/logger/logger.service';
@@ -10,7 +10,11 @@ import { EnoteNavComponent } from './core/enote-nav/enote-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { registerLocaleData } from '@angular/common';
+import localeEsExtra from '@angular/common/locales/extra/es';
+import localeEs from '@angular/common/locales/es';
 
+registerLocaleData(localeEs, 'es-Co', localeEsExtra);
 
 @NgModule({
   declarations: [
@@ -29,7 +33,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     MatListModule,
     SimpleNotificationsModule.forRoot()
   ],
-  providers: [{ provide: LoggerService, useClass: ConsoleLoggerService }],
+  providers: [{ provide: LoggerService, useClass: ConsoleLoggerService }, { provide: LOCALE_ID, useValue: 'en' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
