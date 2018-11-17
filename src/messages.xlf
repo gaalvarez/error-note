@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="4641f0169f7845d640970c0e1314f1f204bb0030" datatype="html">
+        <source>Registrar usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dd2a11ebc737589080ed400dacc33a8c8c84728b" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d15e649b8eb1ba82aa0e7ea082a12901224b1c87" datatype="html">
+        <source>Apellido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8e6c661d78dab5d849d750e987c990219f00e1e2" datatype="html">
+        <source>Nombre de usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e9e588741024086a4b24d5db5da4f5c540a07f30" datatype="html">
+        <source>Correo electrónico</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="600914392e5fc65fbf2abfec896a0a5143a16aff" datatype="html">
+        <source>Fecha de Nacimiento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="genero" datatype="html">
+        <source>{VAR_SELECT, select, Femenino {Femenino} }</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f2cc7e87927ebcee1f055b95bbd05d28a801f3e8" datatype="html">
+        <source>Genero</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="35ad82bbaa7e8b24c1bdf03f3260422c5910a1fb" datatype="html">
+        <source>Aceptar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/notes/pages/register/register.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

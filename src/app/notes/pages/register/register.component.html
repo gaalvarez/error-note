@@ -1,38 +1,40 @@
 
 <mat-card>
-  <mat-card-title>Registrar usuario</mat-card-title>
+  <mat-card-title i18n>Registrar usuario</mat-card-title>
   <mat-card-content>
     <form [formGroup]="registerForm">
       <div class="container">
         <mat-form-field>
-          <input matInput placeholder="Nombre" formControlName="name">
+          <input matInput i18n-placeholder placeholder="Nombre" formControlName="name">
           <mat-error *ngIf="hasError('name')">{{messageError('name')}}</mat-error>
         </mat-form-field>
  
         <mat-form-field>
-          <input matInput placeholder="Apellido" formControlName="lastname">
+          <input matInput i18n-placeholder placeholder="Apellido" formControlName="lastname">
           <mat-error *ngIf="hasError('lastname')">{{messageError('lastname')}}</mat-error>
         </mat-form-field>
  
         <mat-form-field>
-          <input matInput placeholder="Nombre de usuario" formControlName="username">
+          <input matInput i18n-placeholder placeholder="Nombre de usuario" formControlName="username">
           <mat-error *ngIf="hasError('username')">{{messageError('username')}}</mat-error>
         </mat-form-field>
  
         <mat-form-field>
-          <input type="email" matInput placeholder="Correo electrónico" formControlName="email">
+          <input type="email" matInput i18n-placeholder placeholder="Correo electrónico" formControlName="email">
           <mat-error *ngIf="hasError('email')">{{messageError('email')}}</mat-error>
         </mat-form-field>
  
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" formControlName="birthdate">
+          <input matInput [matDatepicker]="picker" i18n-placeholder placeholder="Fecha de Nacimiento" formControlName="birthdate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
  
         <mat-form-field>
-          <mat-select placeholder="Genero" formControlName="gender">
-            <mat-option *ngFor="let gen of genders" [value]="gen">{{gen}}</mat-option>
+          <mat-select i18n-placeholder placeholder="Genero" formControlName="gender">
+            <mat-option *ngFor="let gen of genders" [value]="gen">
+              <span i18n="@@genero">{gen, select, Femenino {Femenino}}</span>
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <p>Valores del formulario: {{registerForm.value | json}}</p>
@@ -41,7 +43,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button [disabled]="!registerForm.valid" (click)="onAction()" type="submit" mat-raised-button color="primary" >Aceptar</button>
+    <button [disabled]="!registerForm.valid" (click)="onAction()" type="submit" mat-raised-button color="primary" i18n>Aceptar</button>
   </mat-card-actions>
  </mat-card>
  

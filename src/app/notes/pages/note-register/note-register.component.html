@@ -5,7 +5,7 @@
       <div class="container">
         <mat-form-field>
           <input matInput placeholder="Titulo" formControlName="title">
-          <mat-error *ngIf="hasError('title')">{{messageError('title')}}</mat-error>
+          <mat-error *ngIf="hasError('title')">{{messageErrorIN('title')}}</mat-error>
         </mat-form-field>
         <p>Valores del formulario: {{notesRegisterForm.value | json}}</p>
         <p>Estado del formulario: {{notesRegisterForm.status}}</p>

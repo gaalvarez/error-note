@@ -1,0 +1,35 @@
+
+
+@import '~@angular/material/theming';
+
+@import './app-theme';
+
+@include mat-core();
+
+$mat-light-theme-background: (
+ status-bar: map_get($mat-grey, 300),
+ app-bar:    map_get($mat-grey, 100),
+ background: map_get($mat-grey, 300),
+ hover:      rgba(black, 0.04),
+ card:       white,
+ dialog:     white,
+ disabled-button: rgba(black, 0.12),
+ raised-button: white,
+ focused-button: $dark-focused,
+ selected-button: map_get($mat-grey, 300),
+ selected-disabled-button: map_get($mat-grey, 400),
+ disabled-button-toggle: map_get($mat-grey, 200),
+ unselected-chip: map_get($mat-grey, 300),
+ disabled-list-option: map_get($mat-grey, 200),
+);
+
+
+$enote-app-primary: mat-palette($mat-indigo, 800);
+$enote-app-accent:  mat-palette($mat-cyan, 400);
+$enote-app-warn:    mat-palette($mat-deep-orange);
+$enote-app-background: mat-palette($mat-gray);
+
+$enote-app-theme: mat-light-theme($enote-app-primary, $enote-app-accent, $enote-app-warn);
+
+@include angular-material-theme($enote-app-theme);
+@include enote-app-theme($enote-app-theme);
