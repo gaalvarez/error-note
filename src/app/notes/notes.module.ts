@@ -21,6 +21,7 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { NoteRegisterComponent } from './pages/note-register/note-register.component';
 import { ErrorMessageComponent } from '../core/input-error/input-error.directive';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { ErrorMessageComponent } from '../core/input-error/input-error.directive
     MatNativeDateModule,
     MatButtonModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    FileUploadModule
   ],
   declarations: [RegisterComponent, SearchComponent, CommentComponent, NoteRegisterComponent, ErrorMessageComponent],
   providers: [UserRegisterService, UniqueUserValidatorService],

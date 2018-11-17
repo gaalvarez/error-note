@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Note } from '../../shared/notes';
+import { Note } from '../../shared/model/note';
 import { Router } from '@angular/router';
 
-
-
-
 export const NOTES: Note[] = [
-  { title: '',
-  language: '',
-  tags: [],
-  description: '',
-  file: null,
-  solution: '',
-  links: [] }
- ];
+  {
+    title: '',
+    language: '',
+    tags: [],
+    description: '',
+    fileId: 0,
+    solution: ''
+  }
+];
 
 @Component({
   selector: 'app-search',

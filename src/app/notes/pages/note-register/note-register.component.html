@@ -1,18 +1,43 @@
 <mat-card>
-  <mat-card-title>Registrar usuario</mat-card-title>
+  <mat-card-title>Registrar Nota</mat-card-title>
   <mat-card-content>
     <form [formGroup]="notesRegisterForm">
       <div class="container">
         <mat-form-field>
           <input matInput placeholder="Titulo" formControlName="title">
-          <mat-error *ngIf="hasError('title')">{{messageError('title')}}</mat-error>
+          <mat-error *ngIf="notesRegisterForm.get('title').errors">{{messageError(notesRegisterForm.get('title'))}}</mat-error>
         </mat-form-field>
-        <p>Valores del formulario: {{notesRegisterForm.value | json}}</p>
+
+        <mat-form-field>
+          <input matInput placeholder="Lenguaje" formControlName="language">
+          <mat-error *ngIf="notesRegisterForm.get('language').errors">{{messageError(notesRegisterForm.get('language'))}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Tags" formControlName="tags" multiple>
+            <mat-option *ngFor="let tag of tags" [value]="tag.id">{{tag.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput placeholder="Descripción" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <div>
+          <input type="file" id="file" ng2FileSelect [uploader]="uploader" formControlName="file" />
+        </div>
+
+        <mat-form-field>
+          <textarea matInput placeholder="Solución" formControlName="solution"></textarea>
+        </mat-form-field>
+
+
+        <!-- <p>Valores del formulario: {{notesRegisterForm.value | json}}</p> -->
         <p>Estado del formulario: {{notesRegisterForm.status}}</p>
       </div>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button [disabled]="!notesRegisterForm.valid" (click)="onAction()" type="submit" mat-raised-button color="primary">Aceptar</button>
+    <button [disabled]="!notesRegisterForm.valid" (click)="onAction()" type="submit" mat-raised-button color="primary">Registrar</button>
   </mat-card-actions>
 </mat-card>

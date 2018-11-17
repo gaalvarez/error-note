@@ -3,7 +3,6 @@ export interface Note {
     language: string;
     tags: string[];
     description: string;
-    file: File;
+    fileId: Number;
     solution: string;
-    links: string[];
  }

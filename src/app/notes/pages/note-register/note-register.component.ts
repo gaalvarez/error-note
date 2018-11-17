@@ -1,63 +1,60 @@
+import { BaseComponent } from 'src/app/core/base-component/base.component';
+import { TAGS } from './../../shared/mocks/mock-tags';
 import { LoggerService } from 'src/app/core/logger/logger.service';
-import { Note } from './../../shared/notes';
-import { FormBuilder } from '@angular/forms';
+import { Note } from '../../shared/model/note';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { FileUploader } from 'ng2-file-upload';
+import { InputErrorService } from 'src/app/core/input-error/input-error.service';
+
+const URL = 'http://localhost:8080/files';
 
 @Component({
   selector: 'app-note-register',
   templateUrl: './note-register.component.html',
   styleUrls: ['./note-register.component.css']
 })
-export class NoteRegisterComponent implements OnInit {
+export class NoteRegisterComponent extends BaseComponent implements OnInit {
 
+  tags = TAGS;
   note: Note = {
     title: '',
     language: '',
     tags: [],
     description: '',
-    file: null,
+    fileId: 0,
     solution: '',
-    links: []
   };
   notesRegisterForm = this.fb.group({
-    title: [this.note.title],
-    language: [this.note.language],
+    title: [this.note.title, Validators.required],
+    language: [this.note.language, Validators.required],
     tags: [this.note.tags],
-    description: [this.note.description],
-    file: [this.note.file],
-    solution: [this.note.solution],
-    links: [this.note.links]
+    description: [this.note.description, Validators.required],
+    file: [],
+    solution: [this.note.solution]
   });
-  errors = {
-    required: 'el valor es requerido'
-  };
+  public uploader: FileUploader = new FileUploader({ url: URL });
 
   constructor(
     private fb: FormBuilder,
-    private log: LoggerService
-  ) { }
+    private log: LoggerService,
+    private ies: InputErrorService
+  ) {
+    super(ies);
+  }
 
   ngOnInit() {
-  }
-
-
-  hasError(control: string): boolean {
-    if (this.notesRegisterForm.controls[control].errors) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  messageError(control: string): string {
-    if (this.notesRegisterForm.controls[control].errors) {
-      return this.errors[Object.keys(this.notesRegisterForm.controls[control].errors)[0]];
-    } else {
-      return '';
-    }
+    this.uploader.onAfterAddingFile = (item => {
+      item.withCredentials = false;
+   });
   }
 
   onAction() {
-    this.log.info('registrar la site info: ' + JSON.stringify(this.note));
+    this.uploadFile();
+    this.log.info('registrar la site info: ' + JSON.stringify(this.notesRegisterForm.value as Note));
+  }
+
+  uploadFile(): any {
+    this.uploader.uploadAll();
   }
 }
