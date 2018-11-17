@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { UniqueUserValidatorService } from './shared/unique-user-validator.service';
 import { UserRegisterService } from './shared/user-register.service';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import {
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { NoteRegisterComponent } from './pages/note-register/note-register.component';
+import { ErrorMessageComponent } from '../core/input-error/input-error.directive';
 
 @NgModule({
   imports: [
@@ -33,9 +35,11 @@ import { NoteRegisterComponent } from './pages/note-register/note-register.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
-  declarations: [RegisterComponent, SearchComponent, CommentComponent, NoteRegisterComponent],
-  providers: [UserRegisterService, UniqueUserValidatorService]
+  declarations: [RegisterComponent, SearchComponent, CommentComponent, NoteRegisterComponent, ErrorMessageComponent],
+  providers: [UserRegisterService, UniqueUserValidatorService],
+  entryComponents: [ErrorMessageComponent]
 })
 export class NotesModule { }

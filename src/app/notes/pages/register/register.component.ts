@@ -1,3 +1,4 @@
+import { InputErrorService } from './../../../core/input-error/input-error.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 import { UniqueUserValidatorService } from './../../shared/unique-user-validator.service';
@@ -6,13 +7,14 @@ import { LoggerService } from 'src/app/core/logger/logger.service';
 import { UserRegister } from '../../shared/user-register';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserRegisterService } from '../../shared/user-register.service';
+import { BaseComponent } from 'src/app/core/base-component/base.component';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends BaseComponent implements OnInit {
 
   registerForm = this.fb.group({
     name: ['', Validators.required],
@@ -22,7 +24,7 @@ export class RegisterComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     birthdate: [''],
     gender: ['']
-  }, { updateOn: 'blur' });
+  });
   genders = ['Femenino', 'Masculino', 'Otro'];
   user: UserRegister = {
     name: '',
@@ -32,11 +34,6 @@ export class RegisterComponent implements OnInit {
     gender: 'Masculino',
     birthdate: new Date(),
   };
-  errors = {
-    required: 'el valor es requerido',
-    email: 'Formato de email inválido',
-    nounique: 'Ya existe un registro con este nombre de usuario'
-  };
 
   constructor(
     private fb: FormBuilder,
@@ -44,28 +41,15 @@ export class RegisterComponent implements OnInit {
     private ur: UserRegisterService,
     private uniqueValidator: UniqueUserValidatorService,
     private notify: NotificationsService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private ies: InputErrorService
+  ) {
+    super(ies);
+  }
 
   ngOnInit() {
     this.log.invokeConsoleMethod('warn', 'De esta forma el log sale como si lo invocara el servicio');
     this.log.warn('De esta forma el log se mostrará con la invocación correcta desde este componente');
-  }
-
-  hasError(control: string): boolean {
-    if (this.registerForm.controls[control].errors) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  messageError(control: string): string {
-    if (this.registerForm.controls[control].errors) {
-      return this.errors[Object.keys(this.registerForm.controls[control].errors)[0]];
-    } else {
-      return '';
-    }
   }
 
   onAction() {
