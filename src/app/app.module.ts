@@ -15,6 +15,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEsExtra from '@angular/common/locales/extra/es';
 import localeEs from '@angular/common/locales/es';
 import { OktaAuthModule } from '@okta/okta-angular';
+import { EnoteLibModule } from 'enote-lib';
 
 // registerLocaleData(localeEs, 'es-Co', localeEsExtra);
 
@@ -40,6 +41,7 @@ const config = {
     MatIconModule,
     MatListModule,
     CoreModule,
+    EnoteLibModule,
     SimpleNotificationsModule.forRoot(),
     OktaAuthModule.initAuth(config)
   ],
