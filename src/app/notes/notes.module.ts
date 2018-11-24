@@ -18,10 +18,11 @@ import {
   MatNativeDateModule,
   MatButtonModule
 } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoteRegisterComponent } from './pages/note-register/note-register.component';
 import { ErrorMessageComponent } from '../core/input-error/input-error.directive';
 import { FileUploadModule } from 'ng2-file-upload';
+import { AuthInterceptor } from '../core/auth/auth.interceptor';
 
 @NgModule({
   imports: [
@@ -41,7 +42,10 @@ import { FileUploadModule } from 'ng2-file-upload';
     FileUploadModule
   ],
   declarations: [RegisterComponent, SearchComponent, CommentComponent, NoteRegisterComponent, ErrorMessageComponent],
-  providers: [UserRegisterService, UniqueUserValidatorService],
+  providers: [
+    UserRegisterService,
+    UniqueUserValidatorService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   entryComponents: [ErrorMessageComponent]
 })
 export class NotesModule { }

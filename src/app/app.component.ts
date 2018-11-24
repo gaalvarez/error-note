@@ -7,14 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  title = 'error-note';
-  count = 0;
-
   ngOnInit(): void {
     console.log('Hello Angular from console');
-  }
-
-  increment() {
-    this.count++;
   }
 }

@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -13,8 +14,15 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { registerLocaleData } from '@angular/common';
 import localeEsExtra from '@angular/common/locales/extra/es';
 import localeEs from '@angular/common/locales/es';
+import { OktaAuthModule } from '@okta/okta-angular';
 
-registerLocaleData(localeEs, 'es-Co', localeEsExtra);
+// registerLocaleData(localeEs, 'es-Co', localeEsExtra);
+
+const config = {
+  issuer: 'https://dev-793918.oktapreview.com/oauth2/default',
+  redirectUri: 'http://localhost:4200/implicit/callback',
+  clientId: '0oahqw3zkv0or5H950h7'
+};
 
 @NgModule({
   declarations: [
@@ -31,7 +39,9 @@ registerLocaleData(localeEs, 'es-Co', localeEsExtra);
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    SimpleNotificationsModule.forRoot()
+    CoreModule,
+    SimpleNotificationsModule.forRoot(),
+    OktaAuthModule.initAuth(config)
   ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService },
